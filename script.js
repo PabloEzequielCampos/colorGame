@@ -1,19 +1,15 @@
 let colors = []; // EMPTY ARRAY TO FILL WITH RANDOM RGB COLORS - FILL IT WITH "COLORS.PUSH"
 
 let squares = document.querySelectorAll(".square");
-let container = document.querySelector(".container");
 let colorDisplay = document.querySelector("#colorDisplay");
 let messageDisplay = document.querySelector("#message"); /// !!! REMOVIDO
-let h1 = document.querySelector("h1");
-let bodyColor = document.querySelector("body");
-let congratMessage = document.querySelector("#congratMessage");
-let resetBtn = document.querySelector(".resetBtn"); // SIN USO DE MOMENTO.
-let hardBtn = document.querySelector(".hardertBtn"); // SIN USO DE MOMENTO
 let hardOnOff = document.querySelector("#hardOnOff"); // CHANGE COLOR OF ON/OFF IN HARD MODE.
+// -------------------------------- QUERYSELECTORS  -------------------------
 
-let hardFlag = 0;
-let lives = 0;
+let hardFlag = 0; // FLAG TO ACTIVATE HARD MODE
+let lives = 0; // LIVES FLAG
 
+// ---------------------------------- FLAGS --------------------
 let clickedColor;
 let pickedColor;
 
@@ -36,11 +32,11 @@ const colorsGenerator = () => {
   pickedColor = colors[Math.round(Math.random() * 5)]; // RANDOM NUMBER ASSIGN TO PICKEDCOLOR
 };
 
-hardOnOff.textContent = "OFF";
+hardOnOff.textContent = "OFF"; // START THE GAME WITH HARD MODE OFF
 hardOnOff.style.color = "RED";
 
-colorsGenerator();
-printSquares();
+colorsGenerator(); // APLY COLORSGENERATOR FUNCTION
+printSquares(); // APLY PRINTSQUARES FUNCTION
 
 function printSquares() {
   for (let i = 0; i < squares.length; i++) {
@@ -53,6 +49,7 @@ for (let i = 0; i < squares.length; i++) {
     clickedColor = this.style.backgroundColor; // ASSING ACTUAL COLOR TO CLICKEDCOLOR VAR
 
     if (hardFlag == 0) {
+      // <--------------------------------------------- NORMAL MODE CONFIG
       if (clickedColor == pickedColor) {
         messageDisplay.textContent = "CORRECT !"; // CORRECT MESSAGE //// REMOVIDO!!
         changeColors(clickedColor); // PUT THE CLICKED COLOR IN CHANGE COLOR FUNCTION
@@ -62,22 +59,22 @@ for (let i = 0; i < squares.length; i++) {
         messageDisplay.textContent = "Try Again"; // TRY AGAIN MESSAGE //// REMOVIDO!!
         messageDisplay.style.color = "orange";
       }
-    }
+    } // <---------------------------------------------------- NORMAL MODE CONFIG
 
     if (hardFlag == 1 && lives == 0) {
+      // <----------------------  HARD MODE CONFIG
       if (clickedColor == pickedColor) {
-        messageDisplay.textContent = "PERFECT IN ONE CLICK !"; // CORRECT MESSAGE //// REMOVIDO!!
-        changeColors(clickedColor); // PUT THE CLICKED COLOR IN CHANGE COLOR FUNCTION
+        messageDisplay.textContent = "PERFECT IN ONE CLICK !";
+        changeColors(clickedColor);
         messageDisplay.style.color = clickedColor;
         lives = 1;
-
       } else {
-        this.style.backgroundColor = "#232323"; // PUT THE SQUARE IN BODY BACKGROUND IF PICK FAILS
-        messageDisplay.textContent = "FAIL - RESTART THE GAME "; // TRY AGAIN MESSAGE //// REMOVIDO!!
+        this.style.backgroundColor = "#232323";
+        messageDisplay.textContent = "FAIL - RESTART THE GAME ";
         messageDisplay.style.color = "RED";
         lives = 1;
       }
-    }
+    } // <-------------------------------------------------------    HARD MODE CONFIG
   });
 }
 function handleSetHardMode() {
@@ -94,6 +91,7 @@ function handleSetHardMode() {
   }, 3000);
 }
 function hardModeReset() {
+  // FUNCTION TO RESET HARD MODE CLEAN
   colors = [];
   colorsGenerator();
   printSquares();
