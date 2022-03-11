@@ -5,36 +5,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@1,700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 
 <body>
 
-    <h1> THE GREAT <br><span id="colorDisplay"> </span><br> GUESSING GAME</h1>
+    <h1> THE GREAT<div id="colorDisplay"></div> GUESSING GAME
+        <div>
+            <button onclick="reset()" class="resetBtn"> NEW COLORS  </button>
+            <span id="message"></span>
+            <button onclick="handleSetHardMode()" class="hardMode"> HARD MODE </button>
+         
+        </div>
+    </h1>
 
-    <div id="buttons"><span id="congratMessage"></span>
-
-
-
-        <!--  <script>   // OTRO MODO
+    <!--  <script>   // OTRO MODO
             function reset() {
                 location.reload();
             }
         </script>*/-->
-
-    </div>
-    <section>
-        <span id="message"></span>
-    </section>
-
-    <div id="test">
-        <button onclick="reset()" class="resetBtn"> RESET </button>
-    </div>
-    <div>
-        <button onclick="handleSetHardMode()" class="hardertBtn"> HARDER </button>
-    </div>
-
 
     <div class="container">
         <div class="square"></div>

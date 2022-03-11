@@ -3,7 +3,7 @@ let colors = []; // EMPTY ARRAY TO FILL WITH RANDOM RGB COLORS - FILL IT WITH "C
 let squares = document.querySelectorAll(".square");
 let container = document.querySelector(".container");
 let colorDisplay = document.querySelector("#colorDisplay");
-/*let messageDisplay = document.querySelector("#message");*/ /// !!! REMOVIDO
+let messageDisplay = document.querySelector("#message"); /// !!! REMOVIDO
 let h1 = document.querySelector("h1");
 let bodyColor = document.querySelector("body");
 let congratMessage = document.querySelector("#congratMessage");
@@ -45,34 +45,27 @@ for (let i = 0; i < squares.length; i++) {
   squares[i].addEventListener("click", function () {
     clickedColor = this.style.backgroundColor; // ASSING ACTUAL COLOR TO CLICKEDCOLOR VAR
     if (clickedColor === pickedColor) {
-      /*messageDisplay.textContent = "CORRECT!"; // CORRECT MESSAGE*/ //// REMOVIDO!!
-      congratMessage.textContent = "¡ CONGRATULATIOS !"; // CONGRAT MESSSAGE
+      messageDisplay.textContent = "CORRECT!"; // CORRECT MESSAGE //// REMOVIDO!!
       changeColors(clickedColor); // PUT THE CLICKED COLOR IN CHANGE COLOR FUNCTION
+      messageDisplay.style.color = clickedColor
     } else {
       this.style.backgroundColor = "#232323"; // PUT THE SQUARE IN BODY BACKGROUND IF PICK FAILS
-      /*messageDisplay.textContent = "NOPE"; // TRY AGAIN MESSAGE*/ //// REMOVIDO!!
-      congratMessage.textContent = " UPS.. TRY AGAIN";
+      messageDisplay.textContent = "Try Again"; // TRY AGAIN MESSAGE //// REMOVIDO!!
+      messageDisplay.style.color = "orange"
     }
   });
 }
-
-function handleSetHardMode() {
-  congratMessage.textContent = "LET'S TRY SOME HARDER - JUST ONE TRY";
+function handleSetHardMode() { // SET TIMEOUT TO ACTIVE FUNCTION AFTER A SECONDS
   setTimeout(() => {
     reset();
   }, 3000);
+  
 }
 
-/*congratMessage.textContent = "LET'S TRY SOME HARDER - JUST ONE TRY";*/
-
-function reset() {
+function reset() {  // RESET FUNCTIONS TO CLEAR THE PAGE 
   colors = [];
   colorsGenerator();
   printSquares();
-  congratMessage.textContent = "";
-  colorDisplay.textContent = pickedColor.toUpperCase();
+  colorDisplay.style.color = "";
+  messageDisplay.textContent = "";
 }
-
-/*function reset() {          // OTRA FORMA DE HACERLO
-  location.reload();
-}*/
