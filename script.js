@@ -34,7 +34,7 @@ const colorsGenerator = () => {
 
 colorsGenerator();
 printSquares();
-
+//test
 function printSquares() {
   for (let i = 0; i < squares.length; i++) {
     squares[i].style.backgroundColor = colors[i]; // FOR LOOP TO ASSING THE COLOR WITH THE ARRAY
