@@ -34,7 +34,7 @@ const colorsGenerator = () => {
 
 colorsGenerator();
 printSquares();
-//test
+
 function printSquares() {
   for (let i = 0; i < squares.length; i++) {
     squares[i].style.backgroundColor = colors[i]; // FOR LOOP TO ASSING THE COLOR WITH THE ARRAY
@@ -60,15 +60,18 @@ function handleSetHardMode() {
   congratMessage.textContent = "LET'S TRY SOME HARDER - JUST ONE TRY";
   setTimeout(() => {
     reset();
-  }, 2500);
+  }, 3000);
 }
 
 /*congratMessage.textContent = "LET'S TRY SOME HARDER - JUST ONE TRY";*/
 
-const reset = () => {
+function reset() {
+  colors = [];
   colorsGenerator();
   printSquares();
-};
+  congratMessage.textContent = "";
+  colorDisplay.textContent = pickedColor.toUpperCase();
+}
 
 /*function reset() {          // OTRA FORMA DE HACERLO
   location.reload();
