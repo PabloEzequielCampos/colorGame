@@ -1,12 +1,10 @@
 .square {
   float: left;
   width: 30%;
-  height: 0;
   padding-bottom: 30%;
-  background-color: lime;
-  margin: 1%;
+  margin: 0.5%;
   border-radius: 25%;
-  border: solid white;
+  border: solid black 0.8ch;
 }
 .container {
   width: 600px;
@@ -16,20 +14,17 @@ body {
   background-color: #232323;
 }
 h1 {
+  width: 35%;
   letter-spacing: 2px;
   font-family: 'Playfair Display SC', serif;
   text-align: center;
-  border: solid white;
+  border: solid white 0.4ch;
   border-radius: 20px;
   margin: 1%;
-  margin-right: 35%;
-  margin-left: 35%;
+  margin-left: 30%;
   padding: 1%;
   color: white;
   background-color: black;
-}
-.h1Square{
-  
 }
 #message {
 font-size: medium;
@@ -38,13 +33,17 @@ text-decoration: underline;
 }
 .resetBtn{
  display: inline-block; /*  CUSTOM BOTTON RESET */
-
+ border-radius: 20px;
+ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .resetBtn:hover{        /* CHANGE MOUSE POINTER*/
   cursor: pointer;
 }
 .hardMode{   /*  CUSTOM BOTTON HARD MODE */
  display: inline-block;
+ border-radius: 20px;
+ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
 }
 .hardertBtn:hover{
   cursor: pointer;

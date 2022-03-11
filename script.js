@@ -9,6 +9,10 @@ let bodyColor = document.querySelector("body");
 let congratMessage = document.querySelector("#congratMessage");
 let resetBtn = document.querySelector(".resetBtn"); // SIN USO DE MOMENTO.
 let hardBtn = document.querySelector(".hardertBtn"); // SIN USO DE MOMENTO
+let hardOnOff = document.querySelector("#hardOnOff"); // CHANGE COLOR OF ON/OFF IN HARD MODE.
+
+let hardFlag = 0;
+let lives = 0;
 
 let clickedColor;
 let pickedColor;
@@ -32,6 +36,9 @@ const colorsGenerator = () => {
   pickedColor = colors[Math.round(Math.random() * 5)]; // RANDOM NUMBER ASSIGN TO PICKEDCOLOR
 };
 
+hardOnOff.textContent = "OFF";
+hardOnOff.style.color = "RED";
+
 colorsGenerator();
 printSquares();
 
@@ -44,28 +51,67 @@ function printSquares() {
 for (let i = 0; i < squares.length; i++) {
   squares[i].addEventListener("click", function () {
     clickedColor = this.style.backgroundColor; // ASSING ACTUAL COLOR TO CLICKEDCOLOR VAR
-    if (clickedColor === pickedColor) {
-      messageDisplay.textContent = "CORRECT!"; // CORRECT MESSAGE //// REMOVIDO!!
-      changeColors(clickedColor); // PUT THE CLICKED COLOR IN CHANGE COLOR FUNCTION
-      messageDisplay.style.color = clickedColor
-    } else {
-      this.style.backgroundColor = "#232323"; // PUT THE SQUARE IN BODY BACKGROUND IF PICK FAILS
-      messageDisplay.textContent = "Try Again"; // TRY AGAIN MESSAGE //// REMOVIDO!!
-      messageDisplay.style.color = "orange"
+
+    if (hardFlag == 0) {
+      if (clickedColor == pickedColor) {
+        messageDisplay.textContent = "CORRECT !"; // CORRECT MESSAGE //// REMOVIDO!!
+        changeColors(clickedColor); // PUT THE CLICKED COLOR IN CHANGE COLOR FUNCTION
+        messageDisplay.style.color = clickedColor;
+      } else {
+        this.style.backgroundColor = "#232323"; // PUT THE SQUARE IN BODY BACKGROUND IF PICK FAILS
+        messageDisplay.textContent = "Try Again"; // TRY AGAIN MESSAGE //// REMOVIDO!!
+        messageDisplay.style.color = "orange";
+      }
+    }
+
+    if (hardFlag == 1 && lives == 0) {
+      if (clickedColor == pickedColor) {
+        messageDisplay.textContent = "PERFECT IN ONE CLICK !"; // CORRECT MESSAGE //// REMOVIDO!!
+        changeColors(clickedColor); // PUT THE CLICKED COLOR IN CHANGE COLOR FUNCTION
+        messageDisplay.style.color = clickedColor;
+        lives = 1;
+
+      } else {
+        this.style.backgroundColor = "#232323"; // PUT THE SQUARE IN BODY BACKGROUND IF PICK FAILS
+        messageDisplay.textContent = "FAIL - RESTART THE GAME "; // TRY AGAIN MESSAGE //// REMOVIDO!!
+        messageDisplay.style.color = "RED";
+        lives = 1;
+      }
     }
   });
 }
-function handleSetHardMode() { // SET TIMEOUT TO ACTIVE FUNCTION AFTER A SECONDS
+function handleSetHardMode() {
+  // SET TIMEOUT TO ACTIVE FUNCTION AFTER A SECONDS
+  messageDisplay.textContent = " HARD MODE -  ONE TRY ";
+  colorDisplay.style.color = "LIME";
+  messageDisplay.style.color = "LIME";
+  hardOnOff.textContent = "ON";
+  hardOnOff.style.color = "blue";
+  hardFlag = 1;
+  lives = 0;
   setTimeout(() => {
-    reset();
+    hardModeReset();
   }, 3000);
-  
 }
-
-function reset() {  // RESET FUNCTIONS TO CLEAR THE PAGE 
+function hardModeReset() {
   colors = [];
   colorsGenerator();
   printSquares();
   colorDisplay.style.color = "";
   messageDisplay.textContent = "";
+  clickedColor.textContent = "";
+  lives = 0;
+}
+
+function reset() {
+  // RESET FUNCTIONS TO CLEAR THE PAGE
+  colors = [];
+  colorsGenerator();
+  printSquares();
+  colorDisplay.style.color = "";
+  messageDisplay.textContent = "";
+  hardOnOff.textContent = "OFF";
+  hardOnOff.style.color = "RED";
+  hardFlag = 0;
+  lives = 0;
 }
