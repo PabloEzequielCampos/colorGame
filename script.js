@@ -8,6 +8,7 @@ let hardOnOff = document.querySelector("#hardOnOff"); // CHANGE COLOR OF ON/OFF 
 
 let hardFlag = 0; // FLAG TO ACTIVATE HARD MODE
 let lives = 0; // LIVES FLAG
+let normalModeFlag = 0;
 
 // ---------------------------------- FLAGS --------------------
 let clickedColor;
@@ -48,12 +49,13 @@ for (let i = 0; i < squares.length; i++) {
   squares[i].addEventListener("click", function () {
     clickedColor = this.style.backgroundColor; // ASSING ACTUAL COLOR TO CLICKEDCOLOR VAR
 
-    if (hardFlag == 0) {
+    if (hardFlag == 0 && normalModeFlag == 0) {
       // <--------------------------------------------- NORMAL MODE CONFIG
       if (clickedColor == pickedColor) {
         messageDisplay.textContent = "CORRECT !"; // CORRECT MESSAGE //// REMOVIDO!!
         changeColors(clickedColor); // PUT THE CLICKED COLOR IN CHANGE COLOR FUNCTION
         messageDisplay.style.color = clickedColor;
+        normalModeFlag = 1;
       } else {
         this.style.backgroundColor = "#232323"; // PUT THE SQUARE IN BODY BACKGROUND IF PICK FAILS
         messageDisplay.textContent = "Try Again"; // TRY AGAIN MESSAGE //// REMOVIDO!!
@@ -112,4 +114,5 @@ function reset() {
   hardOnOff.style.color = "RED";
   hardFlag = 0;
   lives = 0;
+  normalModeFlag = 0;
 }

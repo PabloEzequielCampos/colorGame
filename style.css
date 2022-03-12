@@ -54,3 +54,8 @@ padding: 2%;
 border: solid;
 letter-spacing: 4px;
 }
+@media (max-width:480px) {
+	#col_left {
+		width: 100px;
+	}
+}
